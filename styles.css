@@ -12,7 +12,7 @@ body {
     align-items: center;
 }
 
-.grid-resize {
+button {
     padding: 16px;
     margin: 16px;
     border: 2px solid black;

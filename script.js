@@ -46,10 +46,61 @@ function drawGrid(size) {
             square.addEventListener("mouseover", () => {
                 square.style.backgroundColor = "black";
             });
+
             row.appendChild(square);
         }
         gridContainer.appendChild(row);
     }
 }
+
+function switchToDefaultMode() {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = "black";
+        });
+    });
+    clearGrid();
+}
+
+function switchToRainbowMode() {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.addEventListener("mouseover", () => {
+            const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            square.style.backgroundColor = randomColor;
+        });
+    });
+    clearGrid();
+}
+
+function switchToGradientMode() {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        let opacity = 0;
+        square.addEventListener("mouseover", () => {
+            if (opacity < 1) {
+                opacity += 0.1;
+            }
+            square.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+        });
+    });
+    clearGrid();
+}
+
+function clearGrid() {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.style.backgroundColor = "white";
+    });
+}
+
+const defaultButton = document.querySelector(".grid-default");
+const rainbowButton = document.querySelector(".grid-rainbow");
+const gradientButton = document.querySelector(".grid-gradient");
+
+defaultButton.addEventListener("click", switchToDefaultMode);
+rainbowButton.addEventListener("click", switchToRainbowMode);
+gradientButton.addEventListener("click", switchToGradientMode);
 
 drawGrid(currentSize);
